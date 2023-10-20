@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salary Prediction</title>
+    <style>
+        body {
+            font-family: Roboto, sans-serif;
+            margin: 0;
+            animation: background 10s infinite;
+        }
+
+        @keyframes background {
+            0% {
+                background-color: #f8f9fa;
+            }
+            25% {
+                background-color: #e6e9ee;
+            }
+            50% {
+                background-color: #d4d9e3;
+            }
+            75% {
+                background-color: #c2c9d8;
+            }
+            100% {
+                background-color: #f8f9fa;
+            }
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav a {
+            display: block;
+            padding: 10px 20px;
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            background-color: #e8eaed;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4285f4;
+            font-size: 48px;
+        }
+
+        form {
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #e8eaed;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+        }
+
+        label {
+            display: inline-block;
+            width: 40%;
+            text-align: right;
+            font-size: 18px;
+        }
+
+        input {
+            display: inline-block;
+            width: 40%;
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        #submit {
+            width: 20%;
+            margin-left: 50%;
+            background-color: #4285f4;
+            color: white;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        #error {
+            margin-top: 10px;
+            text-align: center;
+            color: red;
+            font-size: 24px;
+        }
+
+        footer {
+          display:flex; 
+          align-items:center; 
+          justify-content:center; 
+          padding-top :20px; 
+          padding-bottom :20px; 
+          background-color:white; 
+          box-shadow :0 -1px 6px rgba(32,33,36,0.28); 
+          color:#4285f4; 
+          font-size :18px; 
+          margin-top :20px; 
+          width :100%; 
+          position :absolute; 
+          bottom :0; 
+          left :0; 
+         }
+        
+         footer p { 
+           margin-right :10px; 
+         }
+        
+         footer a { 
+           color:#4285f4; 
+           text-decoration:none; 
+         }
+        
+         footer a:hover { 
+           text-decoration :underline; 
+         }
+        
+         .circle { 
+           position:absolute; 
+           width :100px; 
+           height :100px; 
+           border-radius :50%; 
+           opacity :0.5; 
+           animation :circle-move 15s infinite linear alternate; 
+         }
+        
+         .circle-1 { 
+           background-color:#4285f4; 
+           top :10%; 
+           left :10%; 
+         }
+        
+         .circle-2 { 
+           background-color:#34a853; 
+           top :30%; 
+           left :70%; 
+         }
+        
+         .circle-3 { 
+           background-color:#fbbc05; 
+           top :60%; 
+           left :20%; 
+         }
+        
+         .circle-4 { 
+           background-color:#ea4335; 
+           top :80%; 
+           left :50%;  
+         }
+        
+         @keyframes circle-move { 
+           0% { 
+             transform :translate(0, 0); 
+           } 
+           25% { 
+             transform :translate(100px, 50px); 
+           } 
+           50% { 
+             transform :translate(0, 100px); 
+           } 
+           75% { 
+             transform :translate(-100px, 50px); 
+           } 
+           100% { 
+             transform :translate(0, 0); 
+           } 
+         }
+        
+         @media (max-width: 768px) {
+            header img {
+                height: 60px;
+            }
+
+            nav a {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            form {
+                width: 80%;
+            }
+
+            label, input {
+                font-size: 16px;
+            }
+
+            #submit {
+                width: 30%;
+            }
+
+            #result, #error {
+                font-size: 20px;
+            }
+
+            footer {
+                font-size: 16px;
+            }
+         }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="static/logo.png" alt="Logo">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Salary Predictor</h1>
+        <form action="/predict" method="post">
+            <label for="years_experience">Enter Years of Experience:</label>
+            <input type="number" name="years_experience" id="years_experience" min="0" max="50" step="0.1" required>
+            <input type="submit" value="Predict" id="submit">
+        </form>
+        <div id="result"></div>
+        <div id="error"></div>
+    </main>
+    <footer>
+        <p>© 2023 Predictions are constructed with simple neural network. All rights reserved.</p>
+        <p>Email: newbeesworld@newbee.com</p>
+        <p>Phone: +91-1234567891</p>
+    </footer>
+    
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    <div class="circle circle-4"></div>
+
+    <script>
+        var form = document.getElementById("form");
+        var result = document.getElementById("result");
+        var error = document.getElementById("error");
+        
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            result.innerHTML = "";
+            error.innerHTML = "";
+            
+            var years_experience = document.getElementById("years_experience").value;
+
+            var xhr = new XMLHttpRequest();
+            
+            xhr.open("POST", "/predict", true);
+            
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    if (data.prediction) {
+                        result.innerHTML = "The predicted salary for " + years_experience + " years of experience is " + data.prediction + ".";
+                    } else {
+                        error.innerHTML = "Something went wrong. Please try again later.";
+                    }
+                } else {
+                    error.innerHTML = "Something went wrong. Please try again later.";
+                }
+            };
+            
+            xhr.send("years_experience=" + years_experience);
+        });
+    </script>
+</body>
+</html>
