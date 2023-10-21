@@ -3,7 +3,7 @@ import joblib
 from l1_reg import L1RegularizedLinearRegression
 
 
-app = Flask(__name__,template_folder='app')
+application = Flask(__name__,template_folder='app')
 
 model = joblib.load('app/l1_regularized_model.pkl')
 
@@ -22,4 +22,4 @@ def predict():
             return render_template('error.html', error=e)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(debug=True)
